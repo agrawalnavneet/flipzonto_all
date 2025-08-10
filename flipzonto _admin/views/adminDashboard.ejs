@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flipzonto Admin Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f7ff;
+    }
+  
+    header {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 1rem 2rem;
+      text-align: center;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+  
+    .container {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+  
+    .card {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 1.5rem;
+    }
+  
+    .card h2 {
+      margin-bottom: 1rem;
+      color: #1e3a8a;
+      font-size: 1.4rem;
+    }
+  
+    .btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #1e3a8a;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+  
+    .btn:hover {
+      background-color: #16307a;
+    }
+  
+    @media (max-width: 600px) {
+      .container {
+        padding: 1rem;
+      }
+  
+      .card {
+        padding: 1rem;
+      }
+  
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
+  
+</head>
+<body>
+
+  <header>
+    <h1>Flipzonto Admin Panel</h1>
+    <h1>Welcome Akash And Chandan</h1>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>Welcome, Admin!</h2>
+      <p>Manage your chocolate inventory and other Flipzonto features from here.</p>
+    </div>
+
+<div class="card">
+      <h2>Track Salesman Order</h2>
+      <a href="/salemanorderdetails" class="btn">Track Salesman Order</a>    
+    </div>
+
+    <div class="card">
+      <h2>Manage Salesman</h2>
+      <a href="/salesman" class="btn">Manage Salesman</a>    </div>
+
+
+      
+    <div class="card">
+      <h2>Quick Actions On Products</h2>
+      <a href="/babycare" class="btn">Manage Babycare</a>
+      <a href="/biscuit" class="btn">Manage Biscuits</a>
+      <a href="/bathingsoap" class="btn">Manage Bathing Soaps</a>
+      <a href="/chocolate" class="btn">Manage Chocolates</a>
+      <a href="/colddrink" class="btn">Manage Cold Drinks</a>
+      <!-- <a href="/drink" class="btn">Manage Drinks</a> -->
+      <a href="/detergentbar" class="btn">Manage Detergent Bars</a>
+      <a href="/detergentpowder" class="btn">Manage Detergent Powders</a>
+      <a href="/electric" class="btn">Manage Electric</a>
+      <a href="/shampoo" class="btn">Manage Shampoos</a>
+      <a href="/kirana" class="btn">Manage Kirana</a>
+      <a href="/napkin" class="btn">Manage Napkin</a>
+      <a href="/noodles" class="btn">Manage Noodles</a>
+      <a href="/oil" class="btn">Manage Oil</a>
+      <a href="/personalcare" class="btn">Manage Personal Care</a>
+      <a href="/snack" class="btn">Manage Snacks</a>
+      <a href="/tea" class="btn">Manage Tea</a>
+      <a href="/toothpaste" class="btn">Manage Toothpaste</a>
+      <a href="/other" class="btn">Manage Other</a>
+      <!-- Future Links -->
+      <!-- <a href="/orders" class="btn">Manage Orders</a> -->
+      <!-- <a href="/users" class="btn">User Details</a> -->
+    </div>
+    
+    <div class="card">
+      <h2>Mnage All Order</h2>
+
+      <a href="/orderfetchfromDB" class="btn">Recievd Order</a>
+      <a href="/showallproductdetails" class="btn">All Stock</a>
+      <a href="/check-order" class="btn">Invoice Number</a>
+      
+      <!-- Future Links -->
+      <!-- <a href="/orders" class="btn">Manage Orders</a> -->
+      <!-- <a href="/users" class="btn">User Details</a> -->
+    </div>
+    
+    <button class="refresh-btn" onclick="refreshPage()">Refresh Page 🔄</button>
+
+
+
+    
+  </div>
+  <script>
+    function refreshPage() {
+      location.reload();
+    }
+  </script>
+</body>
+</html>
