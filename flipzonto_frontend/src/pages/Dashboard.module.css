@@ -1,0 +1,444 @@
+/* ========== Global ========== */
+* {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+/* ========== Navbar ========== */
+.navbar {
+  background-color: #061756;
+  color: rgb(0, 0, 0);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #ffffff;
+  /* z-index: 9999; */
+  padding: 15px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #ddd;
+
+  /* iOS and Android rubber-band prevention */
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: auto;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  
+
+
+
+  /* height: 100vh; Ensures the container takes full viewport height */
+  overflow-y: auto; /* Enables scroll */
+  overscroll-behavior-y: none; /* Prevents stretch effect */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+}
+
+.hamburger {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* ========== Sidebar ========== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  height: 100%;
+  width: 200px;
+  background-color: #ffffff;
+  color: rgb(189, 27, 27);
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebarItem,
+.closeBtn {
+  background: none;
+  background-color: #e0e3ef;
+  border: none;
+  color: rgb(0, 0, 0);
+  font-size: 1rem;
+  padding: 10px;
+  margin: 8px 0;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* ========== Profile Card ========== */
+.profileCard {
+  background-color: #eceff1;
+  border-radius: 8px;
+  padding-top: 4.5rem;
+  /* margin: 20px auto; */
+  /* max-width: 400px; */
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.profileImage {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.profileInfo h3 {
+  margin-bottom: 8px;
+  color: #061756;
+}
+
+.profileInfo p {
+  margin: 4px 0;
+  color: #333;
+}
+
+/* ========== Date & Time ========== */
+.dateTime {
+  text-align: center;
+  font-size: 1rem;
+  color: gray;
+  margin: 20px 0;
+  font-weight: bold;
+}
+
+/* ========== Dashboard Container ========== */
+.dashboardContainer {
+  padding: 20px;
+  background: linear-gradient(to bottom, #ffffff, #eceef3);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  max-width: 900px;
+  margin: 30px auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.dashboardContainer:hover {
+  transform: scale(1.01);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* ========== Region Section ========== */
+.regionSection {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.regionHeading {
+  font-size: 20px;
+  font-weight: 600;
+  color: #061756;
+  margin-bottom: 15px;
+}
+
+.regionGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.regionButton {
+  padding: 12px 20px;
+  background: linear-gradient(to top, #061756, #09247d);
+    /* background: linear-gradient(to top, #8890ae, #d90707); */
+
+  /* background-color: rgb(0, 0, 0) !important; */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.regionButton:hover {
+  background: linear-gradient(to top, #031047, #09247d);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+.regionButton:active {
+  background: linear-gradient(to top, #000a2b, #031047);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(2px);
+}
+
+/* ========== Add Shop ========== */
+.addShopContainer {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.addShopButton {
+  padding: 12px 25px;
+  background: linear-gradient(to top, #061756, #09247d);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+}
+
+.addShopButton:hover {
+  background: linear-gradient(to top, #031047, #09247d);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-3px);
+}
+
+.addShopButton:active {
+  background: linear-gradient(to top, #000a2b, #031047);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(2px);
+}
+
+/* ========== Logout Button ========== */
+.logoutButton {
+  background-color: #ff4d4f;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logoutButton:hover {
+  background-color: #e60000;
+}
+
+/* ========== Mobile Responsive ========== */
+@media (max-width: 600px) {
+  .profileCard {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .regionGrid {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+.closeBtn {
+  background-color: transparent;
+  border: none;
+  color: rgb(255, 0, 0);
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: transform 0.2s ease, color 0.2s ease;
+  text-align: end;
+}
+
+.closeBtn:hover {
+  color: #ff4d4f;
+  transform: scale(1.2);
+}
+
+
+
+
+
+.sidebarItem.logout {
+  background: linear-gradient(to top, #ff4d4f, #e60000);
+  color: white;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  font-weight: bold;
+  text-align: center;
+}
+
+.sidebarItem.logout:hover {
+  background: linear-gradient(to top, #e60000, #c40000);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+.sidebarItem.logout:active {
+  transform: translateY(1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Make page take full height */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  overscroll-behavior-y: none; /* Prevent bounce on scroll */
+  background-color: #f8f8f8;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Main layout */
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Make content scrollable inside dashboard */
+.regionSection {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+}
+
+/* Date and time */
+.dateTime {
+  text-align: center;
+  font-weight: bold;
+  padding: 0.5rem;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Prevent bounce on iOS within scrollable areas */
+.regionSection,
+.addShopContainer {
+  overscroll-behavior: contain;
+}
+
+/* Sidebar close button (more professional look) */
+.closeBtn {
+  background-color: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #555;
+  cursor: pointer;
+  padding: 0.5rem;
+  align-self: flex-end;
+}
+
+/* Logout button styled red and 3D */
+.logout {
+  background: linear-gradient(to bottom, #ff4d4d, #cc0000);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.1s ease;
+}
+
+.logout:active {
+  transform: translateY(2px);
+}
+
+/* General button styling (optional) */
+.regionButton {
+  /* padding: 1rem; */
+  margin: 0.5rem;
+  /* background-color: #0077ff; */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* font-weight: 600; */
+  transition: background 0.3s ease;
+}
+
+.regionButton:hover {
+  background-color: #005ecb;
+}
+
+
+
+
+.pageWrapper {
+  height: 100vh;
+  overflow-y: auto;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
+}
+
+/* Dashboard.module.css */
+
+.pageWrapper {
+  height: 100vh;                  /* Full screen height */
+  overflow-y: auto;               /* Enable scroll */
+  overscroll-behavior-y: none;   /* Prevent stretch */
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  touch-action: manipulation;    /* Improve tap performance */
+}

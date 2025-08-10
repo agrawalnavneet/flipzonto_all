@@ -1,0 +1,59 @@
+.bottomNav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  /* background: linear-gradient(to top, #061756, #09247d); */
+  display: flex;
+  justify-content: space-around;
+  padding: 8px 0;
+  box-shadow: 0 -5px 10px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  border-top: 1px solid #ccc;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  font-size: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.navItem:hover {
+  color: #666562;
+  transform: scale(1.1);
+}
+
+.navItem svg {
+  font-size: 22px;
+}
+.bottomNav {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45px; /* or your preferred height */
+  /* background: linear-gradient(to top, #061756, #09247d); */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 0;
+  z-index: 9999;
+  border-top: 1px solid #ccc;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+  touch-action: none;
+  transform: translateZ(0); /* Forces GPU acceleration */
+  will-change: transform;
+  background-color: #061756;
+}

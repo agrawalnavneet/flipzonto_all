@@ -1,0 +1,248 @@
+
+
+
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import "./ChooseProductAndAddToCart.css";
+import Navbar from "../components/Navbar";
+
+const ChooseProductAndAddToCart = () => {
+  const { region, shopId } = useParams();
+  const [shop, setShop] = useState(null);
+  const [salesmanName, setSalesmanName] = useState("");
+
+  // State for category products
+  const [category, setCategory] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchShopDetails = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:3000/api/shops/${region}/${shopId}`
+        );
+        const data = await response.json();
+        setShop(data.shop);
+      } catch (error) {
+        console.error("Error fetching shop details:", error);
+      }
+    };
+
+    fetchShopDetails();
+
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      try {
+        const parsedUser = JSON.parse(userData);
+        setSalesmanName(parsedUser.salesman_name);
+      } catch (e) {
+        console.error("Failed to parse user JSON:", e);
+      }
+    }
+  }, [region, shopId]);
+
+  // Function to load products by category
+  const loadCategory = async (cat) => {
+    setCategory(cat);
+    setLoading(true);
+    setProducts([]);
+    try {
+      const apiUrl = `http://localhost:3001/${cat}/api`; // Adjust if needed
+      const res = await fetch(apiUrl);
+      if (!res.ok) throw new Error("Failed to fetch products.");
+      const items = await res.json();
+      setProducts(items);
+    } catch (error) {
+      console.error(error.message);
+      alert("Failed to load products.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (!shop) {
+    return <p>Loading shop details...</p>;
+  }
+  async function addToCart(id, name, image, MRP, rate, category, availableJar) {
+    try {
+      const qtyInput = document.getElementById(`qty-${id}`);
+      const quantity = parseInt(qtyInput.value);
+  
+      if (isNaN(quantity) || quantity <= 0) {
+        alert("Please enter a valid quantity");
+        return;
+      }
+      if (quantity > availableJar) {
+        alert("Quantity exceeds available stock");
+        return;
+      }
+  
+      const response = await fetch(`http://localhost:3001/api/order/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ qty: quantity }),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to update product quantity on server");
+      }
+  
+      // Cart logic
+      let cart = JSON.parse(localStorage.getItem("cart")) || [];
+      const existingProductIndex = cart.findIndex(item => item.id === id);
+  
+      if (existingProductIndex !== -1) {
+        cart[existingProductIndex].quantity += quantity;
+      } else {
+        cart.push({ id, name, image, MRP, rate, category, quantity });
+      }
+      localStorage.setItem("cart", JSON.stringify(cart));
+  
+      // Update UI: Reduce available_jar locally without reload
+      setProducts(prevProducts =>
+        prevProducts.map(product =>
+          product._id === id
+            ? { ...product, available_jar: product.available_jar - quantity }
+            : product
+        )
+      );
+  
+      alert(`${name} added to cart successfully!`);
+    } catch (error) {
+      console.error("Add to cart error:", error);
+      alert("Error adding product to cart. Please try again.");
+    }
+  }
+  
+
+  return (
+    <>
+      <Navbar />
+
+      <h2 className="welcome-text">Welcome, {salesmanName || "Guest"}!</h2>
+
+      {/* Shop Card */}
+      <div className="shop-card">
+        <img src={shop.imageUrl} alt={shop.shopName} className="shop-image" />
+        <div className="shop-details">
+          <h3 className="shop-name">{shop.shopName}</h3>
+          <p>
+            <strong>Owner:</strong> {shop.shopOwnerName}
+          </p>
+          <p>
+            <strong>Contact:</strong> {shop.contact}
+          </p>
+          <p>
+            <strong>Address:</strong> {shop.address}
+          </p>
+          <p>
+            <strong>Location:</strong>{" "}
+            <a
+              href={shop.location}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shop-location-link"
+            >
+              View
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <h1>all</h1>
+
+      {/* Category Buttons */}
+      <div
+        className="category-container"
+        style={{ display: "flex", gap: "10px", marginBottom: "20px" }}
+      >
+        <button onClick={() => loadCategory("chocolate")}>Chocolate</button>
+        <button onClick={() => loadCategory("drinks")}>Drinks</button>
+      </div>
+
+      {/* Loader */}
+      {loading && <p>Loading products...</p>}
+
+      {/* Products Grid */}
+      <div
+        id="products"
+        className="products-container"
+        style={{ display: "flex", flexWrap: "wrap", gap: "15px" }}
+      >
+        {category && (
+          <h2 style={{ color: "#003087", width: "100%" }}>
+            {category.charAt(0).toUpperCase() + category.slice(1)} Products
+          </h2>
+        )}
+
+        {products.map((item) => (
+          <div
+            key={item._id}
+            className="product-card"
+            style={{
+              border: "1px solid #ddd",
+              padding: "10px",
+              width: "200px",
+            }}
+          >
+            <img
+              src={item.image}
+              alt={item.name}
+              style={{ width: "100%", height: "150px", objectFit: "cover" }}
+            />
+            <div className="product-details">
+              <h3>{item.name}</h3>
+              <span style={{ color: "red" }}>MRP ₹{item.MRP}</span>
+              <br />
+              <span style={{ color: "green" }}>
+                <strong>Rate:</strong> ₹{item.rate}
+              </span>
+              <br />
+              <p>Total Weight: {item.total_weight}</p>
+              {item.available_jar > 0 ? (
+                <p>
+                  <strong>Available:</strong>{" "}
+                  <span style={{ color: "green" }}>{item.available_jar}</span>
+                </p>
+              ) : (
+                <p style={{ color: "red" }}>Out of Stock</p>
+              )}
+              <div className="actions" style={{ marginTop: "10px" }}>
+                <input
+                  type="number"
+                  min="1"
+                  max={item.available_jar}
+                  defaultValue={1}
+                  disabled={item.available_jar === 0}
+                  id={`qty-${item._id}`}
+                  style={{ width: "50px", marginRight: "5px" }}
+                />
+                <button
+                  id={`add-to-cart-${item._id}`}
+                  onClick={() =>
+                    addToCart(
+                      item._id,
+                      item.name,
+                      item.image,
+                      item.MRP,
+                      item.rate,
+                      category,
+                      item.available_jar
+                    )
+                  }
+                  disabled={item.available_jar === 0}
+                  className={item.available_jar === 0 ? "out-of-stock" : ""}
+                >
+                  {item.available_jar === 0 ? "Out of Stock" : "Add to Cart"}
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  );
+};
+
+export default ChooseProductAndAddToCart;

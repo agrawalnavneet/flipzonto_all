@@ -1,0 +1,487 @@
+.highlight-search {
+  background-color: rgb(255, 255, 0);
+  font-weight: bold;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+/* Shop list container */ 
+ /* .shop-list-container {
+  padding: 20px;
+  padding-top: 50px;
+  background-color: #816060;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+*/
+/* Sticky search bar */
+.sticky-search {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(255, 255, 255, 1);
+  padding: 15px 20px 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.sticky-search input {
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Shop name styling */
+.shop-name {
+  color: #ffffff;
+  text-decoration: underline;
+  background-color: #061756;
+  display: block;
+  align-items: center;
+  text-align: center;
+}
+.details .shop-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff; /* Dark blue color for shop names */
+  text-decoration: none; /* Remove underline */
+  /* margin-bottom: 5px; Space between shop name and details */
+} 
+/* Headings */
+.shop-list-container h3 {
+  color: #ffffff;
+  /* color: #061756; */
+  text-align: center;
+  /* margin: 5%; */
+  /* padding-top: 15%; */
+  margin-top:3.8rem;
+  padding: 6px;
+  /* padding: ; */
+  background-color: #061756;
+  
+  /* display: inline-block; */
+  align-items: center;
+}
+
+/* Card layout */
+.card {
+  display: flex;
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-right: 1px solid #ddd;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.card-content {
+  flex: 1;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.card-content strong {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  font-size: 15px;
+  color: #011140;
+  /* color: #000000; */
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* Shop details */
+.details {
+  /* margin-bottom: 10px; */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Buttons */
+.buttons a,
+.buttons button {
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.buttons a {
+  background-color: #007BFF;
+  color: white;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.buttons a:hover {
+  background-color: #0056b3;
+}
+
+.buttons button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.buttons button:hover {
+  background-color: #a71d2a;
+}
+
+/* Error and empty states */
+.error {
+  color: #ff4d4d;
+  font-size: 1.2em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.no-shops {
+  color: #888;
+  font-style: italic;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+/* Shop detail */
+.shop-detail {
+  font-size: 16px;
+  color: black;
+}
+
+.detail-label {
+  font-weight: bold;
+  color: #006400;
+}
+
+.shop-detail span {
+  color: #333;
+}
+
+.shop-detail a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.shop-detail a:hover {
+  text-decoration: underline;
+}
+
+/* Loader */
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.circle-loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #011140;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Shimmer effect for loading cards */
+.shimmer-card {
+  display: flex;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 100%;
+  height: 150px;
+}
+
+.shimmer-image {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer-loading 1.5s infinite linear;
+  border-right: 1px solid #ddd;
+}
+
+.shimmer-content {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shimmer-line {
+  height: 16px;
+  width: 80%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer-loading 1.5s infinite linear;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.shimmer-small-line {
+  height: 14px;
+  width: 50%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer-loading 1.5s infinite linear;
+  border-radius: 5px;
+}
+
+@keyframes shimmer-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* THORA SARKANE SE UPPER  */
+.shop-list-container {
+  padding-bottom: 8px; /* Adjust based on your ButtonNav height */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.shop-list {
+  /* Optional: You can apply padding here instead if your container has other uses */
+  padding-bottom: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Prevent page bounce/stretch */
+.shop-list-container {
+  height: 100vh; /* Ensures the container takes full viewport height */
+  overflow-y: auto; /* Enables scroll */
+  overscroll-behavior-y: none; /* Prevents stretch effect */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+}
+
+.sticky-search {
+  position: fixed; /* Fix the search bar at the top of the page */
+  /* top: 10%; */
+  left: 0;
+  width: 100%; /* Make the search bar take full width */
+  background-color: white;
+  z-index: 10;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sticky-search input {
+  width: 100%; /* Make the input take full width of the search bar */
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.shop-list {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-top: 0px;
+   /* padding-top: 60px; */
+}
+
+.shop-card-link {
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.card-content {
+  /* padding: 15px; */
+  flex-grow: 1;
+}
+
+.details {
+  font-size: 14px;
+}
+
+.shop-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.shop-detail {
+  margin: 5px 0;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.no-shops {
+  color: gray;
+}
+
+.shop-list-shimmer {
+  display: flex;
+  flex-direction: column;
+}
+
+.shimmer-card {
+  display: flex;
+  margin: 10px 0;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shimmer-image {
+  width: 150px;
+  height: 150px;
+  background-color: #ddd;
+}
+
+.shimmer-content {
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.shimmer-line {
+  height: 20px;
+  background-color: #ccc;
+  margin: 5px 0;
+}
+
+.shimmer-small-line {
+  height: 15px;
+  background-color: #ccc;
+  margin: 3px 0;
+}
+
+.highlight-search {
+  background-color: rgb(255, 251, 0);
+}
+
+.shop-list-container {
+  padding-bottom: 80px; /* adjust based on height of BottomNav */
+}
+
+.village-header1:hover {
+  background-color: #e0e0e0;
+}
+.shop-cards {
+  margin-bottom: 10px;
+}
+
+
+
+
+
+.village-header {
+  cursor: pointer;
+  background-color: #f0f0f0;
+  padding: 10px;
+  /* margin-bottom: 0px; */
+  border-radius: 5px;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shop-cards {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+}
+
+.shop-cards.expanded {
+  max-height: 10000px; /* large enough value */
+  opacity: 1;
+  border-radius: 20px;
+}
+
+.total-shop {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  text-align: center;
+  color: green;
+}
+
+
+
+
+
+
+

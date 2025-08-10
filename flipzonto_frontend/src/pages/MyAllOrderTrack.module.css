@@ -1,0 +1,290 @@
+/* MyAllOrderTrack.module.css */
+.dashboardContainer {
+  /* padding: 20px; */
+  /* padding: 0px; */
+  font-family: 'Arial', sans-serif;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.welcomeText {
+  font-size: 18px;
+  color: #555;
+  /* margin-bottom: 20px; */
+  margin-top: -20px;
+  align-items: center;
+  text-align: center;
+}
+
+.dashboardSummary {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 30px;
+  justify-content: space-between;
+}
+
+.summaryCard {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  width: 30%;
+
+}
+
+.summaryCard h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: black;
+  background-color: white;
+}
+
+.summaryCard p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2f8f2f;
+}
+
+.ordersSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.orderCard {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.orderCard h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.orderCard p {
+  font-size: 14px;
+  color: #666;
+}
+
+.cartItemsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.cartItemCard {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cartItemCard .itemImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.cartItemCard h4 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.cartItemCard p {
+  font-size: 14px;
+  color: #555;
+}
+
+.noOrders {
+  font-size: 16px;
+  color: #b01515;
+  text-align: center;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .dashboardSummary {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .summaryCard {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .ordersSection {
+    padding: 0 10px;
+  }
+
+  .cartItemsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .cartItemCard {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboardContainer {
+    padding: 10px;
+  }
+
+  .summaryCard {
+    width: 100%;
+    margin-bottom: 1px;
+    padding: 10px 5px; /* Top-Bottom: 10px, Left-Right: 5px */
+    background-color: #fff; /* optional: for better 3D effect */
+    border-radius: 5px; /* optional: smooth corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* shadow for 3D effect */
+    transition: transform 0.2s; /* optional: smooth hover effect */
+  }
+  
+  .summaryCard:hover {
+    transform: translateY(-2px); /* optional: lift on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* deeper shadow on hover */
+  }
+  
+
+  .cartItemsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .cartItemCard {
+    padding: 10px;
+
+    font-size: 14px;
+  }
+
+  .cartItemCard h4 {
+    font-size: 14px;
+  }
+}
+
+
+
+
+
+
+/* MyAllOrderTrack.module.css */
+
+/* Other styles remain unchanged */
+
+.cartItemCard .itemImage {
+  width: 50px; /* Set a fixed width */
+  height: 50px; /* Set a fixed height */
+  object-fit: cover; /* Ensure the image aspect ratio is maintained */
+  margin-bottom: 10px;
+  border-radius: 4px; /* Optional: Make the image rounded */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .cartItemsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .cartItemCard .itemImage {
+    width: 40px; /* Make image smaller on smaller screens */
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cartItemCard .itemImage {
+    width: 30px; /* Further reduce size on very small screens */
+    height: 30px;
+  }
+}
+
+
+
+.filterSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 0.8rem;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+.filterSection label {
+  font-size: 1.1rem;
+  color: #2b4f60;
+  font-weight: 500;
+}
+
+.filterSection input[type="date"] {
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #f9f9f9;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.filterSection input[type="date"]:focus {
+  border-color: #007b83;
+  outline: none;
+}
+
+h2{
+  color: #ffffff;
+  /* color: #061756; */
+  text-align: center;
+  /* margin: 5%; */
+  /* padding-top: 15%; */
+  margin-top:2.4rem;
+  /* padding: 6px; */
+  /* padding: ; */
+  background-color: #0e1e55;
+  
+  /* display: inline-block; */
+  align-items: center;
+}
+
+
+.pageWrapper {
+  height: 100vh;                  /* Full screen height */
+  overflow-y: auto;               /* Enable scroll */
+  overscroll-behavior-y: none;   /* Prevent stretch */
+  -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+  touch-action: manipulation;    /* Improve tap performance */
+}
+
+
+
+/* Prevent rubber band / bounce on iOS and Android */
+.pageWrapper {
+  height: 100vh;
+  overflow-y: auto;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
+}
+
+/* Optional: ensure body doesn't conflict */
+html, body {
+  margin: 0;
+  padding: 0;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
+  height: 100%;
+  overflow-x: hidden;
+}

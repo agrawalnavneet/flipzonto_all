@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+    <meta name="theme-color" content="#002F5F" /> <!-- Match header/nav background -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <!-- <link rel="preload" as="image" href="./src/assets/flipzonto.svg"> -->
+    <link rel="styles/sheet" href="/salesman-admin-panel/src/index.css" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /> -->
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <title>FlipZonto Sales Panel</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    <script>
+      let maybePreventPullToRefresh = false;
+      let lastTouchY = 0;
+      const touchstartHandler = (e) => {
+        if (e.touches.length !== 1) return;
+        lastTouchY = e.touches[0].clientY;
+        maybePreventPullToRefresh = window.scrollY === 0;
+      };
+    
+      const touchmoveHandler = (e) => {
+        const touchY = e.touches[0].clientY;
+        const touchYDelta = touchY - lastTouchY;
+        lastTouchY = touchY;
+    
+        if (maybePreventPullToRefresh) {
+          maybePreventPullToRefresh = false;
+          if (touchYDelta > 0) {
+            e.preventDefault(); // blocks pull-to-refresh
+          }
+        }
+      };
+    
+      document.addEventListener("touchstart", touchstartHandler, { passive: false });
+      document.addEventListener("touchmove", touchmoveHandler, { passive: false });
+    </script>
+    
+
+  </body>
+</html>

@@ -1,0 +1,431 @@
+/* Universal Box-Sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  color: #000;
+  min-height: 100vh;
+  background-color: #ffffff; 
+}
+body {
+  margin: 0;
+  padding: 0;
+  /* overflow: hidden; prevent scroll globally */
+
+}
+
+/* Navbar styles */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 8px 16px; */
+  background: #ffffff;
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); */
+}
+
+.navbar img {
+  height: 38px;
+  width: auto;
+  margin-left: 10px;
+}
+
+/* Login Container */
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 40px 20px; */
+  margin-top: 5%;
+  /* background-color: #f6f7fb; */
+  /* border-radius: 70%; */
+}
+
+/* Login Box */
+.loginBox {
+  background: linear-gradient(to bottom, #ffffff, #f9f9fb); /* Premium white gradient */
+  border-radius: 16px;
+  padding: 40px 30px;
+  max-width: 400px;
+  width: 100%;
+  height: 90vh; 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Push content to top and button to bottom */
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  text-align: center;
+  transition: box-shadow 0.3s ease;
+  padding-bottom: 100%;
+
+}
+
+
+
+/* Login Title */
+.loginTitle {
+  font-size: 25px;
+  font-weight: bold;
+  color: #061756;
+  /* margin-bottom: 30px; */
+}
+
+/* Input Fields */
+.inputField {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid #dcdfe6;
+  background-color: #ffffff;
+  font-size: 16px;
+  transition: border 0.3s ease;
+  color: #061756;
+  /* font-family: cursive; */
+  font-weight: bold;
+}
+
+.inputField:focus {
+  border-color: #1644dc;
+  box-shadow: 0 0 8px rgba(22, 68, 220, 0.2);
+}
+
+/* Password Input */
+.passwordContainer {
+  position: relative;
+}
+
+.passwordEye {
+  position: absolute;
+  right: 12px;
+  top: 40%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+}
+
+.passwordContainer input {
+  padding-right: 40px;
+}
+
+/* Button */
+.loginButton {
+  width: 100%;
+  padding: 12px;
+  background-color: #061756;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  margin-left: 0PX;
+  /* padding-left: 10px; */
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.loginButton:hover {
+  opacity: 0.95;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  background-color: #031036;
+}
+
+/* Terms Checkbox */
+.termsCheckbox {
+  text-align: left;
+  font-size: 13px;
+  color: #444;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.termsCheckbox input[type='checkbox'] {
+  transform: scale(1.1);
+  margin-right: 8px;
+  accent-color: #28a745;
+}
+
+/* Spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  display: none;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+/* Login Spinner */
+.loginSpinner {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  width: 18.5px;
+  height: 18.5px;
+  animation: loginSpin 1s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes loginSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* === Dashboard Specific === */
+.dashboardContainer {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.dashboardHeading {
+  font-size: 24px;
+  font-weight: bold;
+  color: #061756;
+}
+
+.dateTime {
+  font-size: 16px;
+  color: gray;
+}
+
+.regionHeading {
+  font-size: 18px;
+  font-weight: 600;
+  color: #222;
+}
+
+.regionButtonsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Updated to premium blue */
+.regionButton {
+  padding: 10px 20px;
+  background-color: #1644dc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.regionButton:hover {
+  background-color: #1039b0;
+}
+
+.addShopButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #061756;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addShopButton:hover {
+  background-color: #031036;
+}
+.inputField {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 2px solid #ddd; /* Default border */
+  border-radius: 8px;
+  outline: none;
+  transition: border 0.3s ease;
+  
+}
+
+
+.inputField:focus {
+  border-color: #031036; /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.4); /* Optional glow effect */
+}
+.flagGraphic {
+  margin-top: 20px;
+  text-align: center;
+  animation: fadeInUp 1s ease-in-out;
+}
+
+
+
+.indianFlag {
+  width: 80px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.loginBox h4{
+  /* color:  red; */
+  margin: 5px
+};
+
+
+
+
+
+
+
+
+
+
+.termsCheckbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  /* font-size: 14px; */
+  color: #333;
+  margin: 20px 0;
+  /* line-height: 1.5; */
+  /* background: #f9f9f9; */
+  /* padding: 10px 15px; */
+  border-radius: 8px;
+  /* box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05); */
+}
+
+.termsCheckbox input[type='checkbox'] {
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  accent-color: #061756; /* matches your theme */
+  cursor: pointer;
+}
+
+
+
+.faceCheckModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.faceCheckBox {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  max-width: 320px;
+  width: 90%;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.webcamView {
+  width: 220px;
+  height: 180px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 2px solid #333;
+}
+
+.faceCheckImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  border: 2px solid #444;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+p {
+  color: #061756;
+  font-size: 16px;
+  /* font-family: 'Times New Roman', Times, serif; */
+  font-weight: bold;
+  margin: 5px 0;
+  line-height: 1.5;
+  /* text-decoration: underline; */
+}
+
+
+
+
+
+
+
+.authLoaderWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #ffffff;
+}
+
+.authSpinner {
+  width: 50px;
+  height: 50px;
+  border: 6px solid #e0e0e0;
+  border-top: 6px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

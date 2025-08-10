@@ -1,0 +1,1629 @@
+
+
+.welcome-text {
+  color: #003087;
+  margin-bottom: 16px;
+  text-align: center;
+  padding-top: 12%;
+  font-size: 1rem; /* Larger text for better emphasis */
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 3px rgba(0, 48, 135, 0.2);
+
+  
+}
+
+/* Optional animation */
+
+
+
+  .shop-card1 {
+    /* border: 1px solid #ddd; */
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    /* background: linear-gradient( #061756, #ffffff); */
+    /* background-color: #000000; */        
+    /* border-radius: 8px; */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+    
+  }
+  
+  .shop-image1 {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+  }
+  
+  .shop-details1 {
+    flex-grow: 1;
+  }
+  
+  .shop-name1 {
+    color: #003087;
+    margin-top: 0;
+    margin-bottom: 0px;
+  }
+  
+  .shop-details1 p {
+    margin-bottom: 0px;
+    font-size: 0.7em;
+    color: #003087;
+  }
+  
+  .shop-location-link {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .shop-location-link:hover {
+    text-decoration: underline;
+  }
+  
+  .category-container {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 0px;
+    justify-content: center;
+  }
+  
+  .category-container button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background-color 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .category-container button:hover {
+    background-color: #0056b3;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .category-title {
+    color: #003087;
+    width: 100%; /* Ensures it takes the full width of its container */
+    text-align: left; /* Aligns the text to the left */
+    margin-bottom: 15px;
+    padding-left: 15px; /* Optional: Add some left padding for visual spacing */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .products-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .product-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .product-image-container {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .product-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex-grow: 1;
+  }
+  
+  .product-name {
+    font-size: 1.1em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 5px;
+  }
+  
+  .product-mrp {
+    color: red;
+    font-size: 0.9em;
+    /* text-decoration: line-through; */
+  }
+  
+  .product-rate {
+    color: green;
+    font-weight: bold;
+    font-size: 1em;
+  }
+  
+  .product-weight {
+    color: #555;
+    font-size: 0.9em;
+  }
+  
+  .product-availability {
+    font-size: 0.9em;
+  }
+  
+  .available-stock {
+    color: green;
+  }
+  
+  .out-of-stock {
+    color: red;
+  }
+  
+  .product-actions {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .quantity-input {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 0.9em;
+  }
+  
+  .add-to-cart-button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-to-cart-button:hover {
+    background-color: #1e7e34;
+  }
+  
+  .add-to-cart-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .products-container {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+  
+    .product-item {
+      flex-direction: column;
+    }
+  
+    .product-image-container {
+      height: 150px;
+    }
+  
+    .product-info {
+      padding: 10px;
+      gap: 5px;
+    }
+  
+    .product-name {
+      font-size: 1em;
+      margin-bottom: 3px;
+    }
+  
+    .product-mrp,
+    .product-rate,
+    .product-weight,
+    .product-availability {
+      font-size: 0.85em;
+    }
+  
+    .quantity-input {
+      width: 50px;
+      padding: 6px;
+      margin-right: 5px;
+    }
+  
+    .add-to-cart-button {
+      padding: 8px 12px;
+      font-size: 0.9em;
+    }
+  
+    .shop-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .shop-image {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 10px;
+      margin-right: 0;
+    }
+  }
+
+
+
+/* ChooseProductAndAddToCart.css */
+
+/* ... other styles ... */
+
+.products-container {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    gap: 15px; /* Adjust vertical spacing between product cards */
+    padding: 10px; /* Optional padding around the product list */
+  }
+  
+  .product-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex; /* Arrange image and info side by side */
+    align-items: center; /* Vertically align image and info */
+    width: 100%; /* Each item takes full width */
+    padding: 10px; /* Optional padding inside each product card */
+  }
+  
+  .product-image-container {
+    width: 120px; /* Adjust image width as needed */
+    height: 120px; /* Adjust image height as needed */
+    overflow: hidden;
+    margin-right: 15px; /* Space between image and text */
+    border-radius: 5px; /* Optional image border radius */
+    flex-shrink: 0; /* Prevent image from shrinking */
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .product-info {
+    display: flex;
+    flex-direction: column; /* Stack text details vertically */
+    gap: 5px; /* Spacing between text lines */
+    flex-grow: 1; /* Allow info to take remaining width */
+  }
+  
+  .product-name {
+    font-size: 1.1em;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  
+  .product-mrp {
+    color: red;
+    font-size: 0.9em;
+    /* text-decoration: line-through; */
+  }
+  
+  .product-rate {
+    color: green;
+    font-weight: bold;
+    font-size: 1em;
+  }
+  
+  .product-weight,
+  .product-availability {
+    font-size: 0.9em;
+    color: #555;
+  }
+  
+  .product-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .quantity-input {
+    width: 50px;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+    font-size: 0.9em;
+  }
+  
+  .add-to-cart-button,
+  .out-of-stock {
+    padding: 8px 12px;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+  }
+  
+  .add-to-cart-button {
+    background-color: #28a745;
+  }
+  
+  .add-to-cart-button:hover {
+    background-color: #1e7e34;
+  }
+  
+  .out-of-stock {
+    background-color: #dc3545;
+  }
+  
+  .out-of-stock:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive adjustments - You might need to tweak these */
+
+
+
+
+
+
+  /* ChooseProductAndAddToCart.css */
+
+/* ... other styles ... */
+
+.products-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 10px;
+  }
+  
+  .product-card {
+    display: flex; /* Image and details side-by-side */
+    background: #f0fff0;
+    border-radius: 12px;
+    padding: 0.8rem;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+    align-items: center; /* Vertically align image and details */
+  }
+  
+  .product-image-container {
+    width: 90px; /* Matches EJS */
+    height: 100px; /* Matches EJS */
+    object-fit: contain;
+    border-radius: 8px;
+    margin-right: 1rem;
+    background: white;
+    padding: 5px;
+    flex-shrink: 0; /* Prevent image from shrinking */
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  
+  .product-details {
+    flex-grow: 1; /* Take up remaining space */
+  }
+  
+  .product-details h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+    text-align: start;
+  }
+  
+  .product-details span,
+  .product-details p {
+    margin: 2px 0;
+    font-size: 0.9rem;
+  }
+  
+  .product-mrp {
+    color: red;
+  }
+  
+  .product-rate {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .product-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .quantity-input {
+    width: 50px;
+    padding: 0.3rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .add-to-cart-button,
+  .out-of-stock {
+    background: #003087;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.7rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .add-to-cart-button:hover {
+    background: #001f5c;
+  }
+  
+  .out-of-stock {
+    background: red;
+    cursor: not-allowed;
+  }
+  
+  .category-title {
+    color: #003087;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 15px;
+    padding-left: 10px;
+  }
+  
+  /* Responsive adjustments - You might need to tweak these */
+  /* ChooseProductAndAddToCart.css */
+
+/* ... other styles ... */
+
+.products-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 10px;
+  }
+  
+  .product-card {
+    display: flex; /* Image and details side-by-side */
+    background: #f5f6f7;
+    border-radius: 12px;
+    padding: 0.8rem;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+    align-items: center; /* Vertically align image and details */
+  }
+  
+  .product-image-container {
+    width: 90px; /* Adjust as needed */
+    height: 100px; /* Adjust as needed */
+    object-fit: contain;
+    border-radius: 8px;
+    margin-right: 1rem;
+    background: white;
+    padding: 5px;
+    flex-shrink: 0; /* Don't allow image container to shrink */
+  }
+  
+  .product-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  
+  .product-details {
+    flex-grow: 1; /* Take up remaining space */
+  }
+  
+  .product-details h3 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .product-details span,
+  .product-details p {
+    margin: 2px 0;
+    font-size: 0.9rem;
+  }
+  
+  .product-mrp {
+    color: red;
+  }
+  
+  .product-rate {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .product-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  
+  .quantity-input {
+    width: 50px;
+    padding: 0.3rem;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  
+  .add-to-cart-button,
+  .out-of-stock {
+    background: #003087;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.7rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+  }
+  
+  .add-to-cart-button:hover {
+    background: #001f5c;
+  }
+  
+  .out-of-stock {
+    background: red;
+    cursor: not-allowed;
+  }
+  
+  .category-title {
+    color: #003087;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 1px;
+    padding-left: 10px;
+    background-color: #f4f8fc;
+    
+  }
+  
+ 
+
+
+
+
+
+/* Style for Zoomed Image Modal */
+.zoom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+/* Style for the Zoomed Image */
+.zoomed-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  border-radius: 10px;
+  cursor: default;
+}
+
+/* Close Button for Zoom Modal */
+.close-zoom-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: none;
+  border-radius: 50%;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.close-zoom-button:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.close-zoom-button:focus {
+  outline: none;
+}
+
+/* Product Card and Image Styles */
+.product-image-container {
+  cursor: pointer;
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-image:hover {
+  transform: scale(1.1);
+}
+
+
+
+
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .category-grid {
+    grid-template-columns: repeat(3, 1fr); /* Three items per row on small screens */
+  }
+}
+
+.category-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  background: #f9f9f9;
+  padding: 5px;
+  margin: 5pX;
+  border-radius: 10px;
+  box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.category-button:hover {
+  transform: scale(1.05);
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.category-button img {
+  width: auto;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 0px;
+}
+
+.category-button span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #333;
+}
+
+
+
+
+
+
+
+
+.active-category {
+  background-color: darkgreen;
+  color: white;
+}
+
+
+
+
+/* Add this to your ChooseProductAndAddToCart.css file */
+
+.bottom-page-info {
+  /* Set a maximum height for the div.
+     You can adjust this value to control how "half" scrollable it is.
+     For example, 50vh means 50% of the viewport height. */
+  max-height: 250px; /* Example: A fixed height, adjust as needed */
+  /* Or use a percentage of viewport height: */
+  /* max-height: 40vh; */
+
+  overflow-y: auto; /* Adds scrollbar only when content overflows vertically */
+  border-top: 1px solid #ccc; /* Optional: A visual separator */
+  padding: 1rem;
+  background-color: #f9f9f9;
+  margin-top: 2rem; /* Add some space above it */
+  text-align: center;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+/* Optional: Style for the paragraph inside if needed */
+.bottom-page-info p {
+  margin-bottom: 0.5rem;
+}
+
+.products-container .product-card:last-child {
+  margin-bottom: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.highlight-search {
+  background-color: rgb(255, 255, 0);
+  font-weight: bold;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+/* Shop list container */ 
+ /* .shop-list-container {
+  padding: 20px;
+  padding-top: 50px;
+  background-color: #816060;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.9);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+*/
+/* Sticky search bar */
+.sticky-search {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background: rgba(255, 255, 255, 1);
+  padding: 15px 20px 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.sticky-search input {
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+/* Shop name styling */
+.shop-name {
+  color: #ffffff;
+  text-decoration: underline;
+  background-color: #061756;
+  display: block;
+  align-items: center;
+  text-align: center;
+}
+.details .shop-name {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff; /* Dark blue color for shop names */
+  text-decoration: none; /* Remove underline */
+  /* margin-bottom: 5px; Space between shop name and details */
+} 
+/* Headings */
+.shop-list-container h3 {
+  color: #ffffff;
+  /* color: #061756; */
+  text-align: center;
+  /* margin: 5%; */
+  /* padding-top: 15%; */
+  margin-top:3.8rem;
+  padding: 6px;
+  /* padding: ; */
+  background-color: #061756;
+  
+  /* display: inline-block; */
+  align-items: center;
+}
+
+/* Card layout */
+.card {
+  display: flex;
+  background-color: white;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: inherit;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+
+}
+
+.card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-right: 1px solid #ddd;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.card-content {
+  flex: 1;
+  padding: 1px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.card-content strong {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  font-size: 15px;
+  color: #011140;
+  /* color: #000000; */
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+/* Shop details */
+.details {
+  /* margin-bottom: 10px; */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Buttons */
+.buttons a,
+.buttons button {
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.buttons a {
+  background-color: #007BFF;
+  color: white;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.buttons a:hover {
+  background-color: #0056b3;
+}
+
+.buttons button {
+  background-color: #dc3545;
+  color: white;
+}
+
+.buttons button:hover {
+  background-color: #a71d2a;
+}
+
+/* Error and empty states */
+.error {
+  color: #ff4d4d;
+  font-size: 1.2em;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.no-shops {
+  color: #888;
+  font-style: italic;
+}
+
+/* Hover effect */
+.card:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+/* Shop detail */
+.shop-detail {
+  font-size: 16px;
+  color: black;
+}
+
+.detail-label {
+  font-weight: bold;
+  color: #006400;
+}
+
+.shop-detail span {
+  color: #333;
+}
+
+.shop-detail a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.shop-detail a:hover {
+  text-decoration: underline;
+}
+
+/* Loader */
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+.circle-loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #011140;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Shimmer effect for loading cards */
+.shimmer-card {
+  display: flex;
+  background-color: #ffffff;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  width: 100%;
+  height: 150px;
+}
+
+.shimmer-image {
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer-loading 1.5s infinite linear;
+  border-right: 1px solid #ddd;
+}
+
+.shimmer-content {
+  flex: 1;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.shimmer-line {
+  height: 16px;
+  width: 80%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer-loading 1.5s infinite linear;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.shimmer-small-line {
+  height: 14px;
+  width: 50%;
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer-loading 1.5s infinite linear;
+  border-radius: 5px;
+}
+
+@keyframes shimmer-loading {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* THORA SARKANE SE UPPER  */
+.shop-list-container {
+  padding-bottom: 8px; /* Adjust based on your ButtonNav height */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.shop-list {
+  /* Optional: You can apply padding here instead if your container has other uses */
+  padding-bottom: 50px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Prevent page bounce/stretch */
+.shop-list-container {
+  height: 100vh; /* Ensures the container takes full viewport height */
+  overflow-y: auto; /* Enables scroll */
+  overscroll-behavior-y: none; /* Prevents stretch effect */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+}
+
+.sticky-search {
+  position: fixed; /* Fix the search bar at the top of the page */
+  /* top: 10%; */
+  left: 0;
+  width: 100%; /* Make the search bar take full width */
+  background-color: white;
+  z-index: 10;
+  padding: 10px 15px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sticky-search input {
+  width: 100%; /* Make the input take full width of the search bar */
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.shop-list {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  padding-top: 0px;
+   /* padding-top: 60px; */
+}
+
+.shop-card-link {
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8); 
+  border-radius:10px ;
+}
+
+.card img {
+  width: 130px;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-content {
+  /* padding: 15px; */
+  flex-grow: 1;
+}
+
+.details {
+  font-size: 14px;
+}
+
+.shop-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.shop-detail {
+  margin: 5px 0;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+.no-shops {
+  color: gray;
+}
+
+.shop-list-shimmer {
+  display: flex;
+  flex-direction: column;
+}
+
+.shimmer-card {
+  display: flex;
+  margin: 10px 0;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.shimmer-image {
+  width: 150px;
+  height: 150px;
+  background-color: #ddd;
+}
+
+.shimmer-content {
+  flex-grow: 1;
+  margin-left: 10px;
+}
+
+.shimmer-line {
+  height: 20px;
+  background-color: #ccc;
+  margin: 5px 0;
+}
+
+.shimmer-small-line {
+  height: 15px;
+  background-color: #ccc;
+  margin: 3px 0;
+}
+
+.highlight-search {
+  background-color: rgb(255, 255, 0);
+}
+
+.shop-list-container {
+  padding-bottom: 80px; /* adjust based on height of BottomNav */
+}
+
+
+
+
+
+
+
+
+.category-button.active {
+
+  /* background: linear-gradient(to top, #061756, #09247d); */
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+ border: 1px solid black;
+
+  /* border: 2px solid #0a0; Optional for better visibility */
+}
+.category-button.active span{
+  color: #000000;
+}
+
+
+
+
+
+
+.search-bar-container {
+  padding: 10px 15px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 15px; /* Space between search bar and products */
+  display: flex;
+  justify-content: center;
+
+  /* --- Key properties for sticky behavior with 5% top offset --- */
+  position: sticky;
+  top: 5vh;           /* Sticks 5% of the viewport height from the top */
+  z-index: 100;     /* Ensures it stays above other scrolling content */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Optional: subtle shadow for visual separation */
+  
+}
+
+.product-search-input {
+  /* ... (keep existing styles) ... */
+  width: 90%;
+  max-width: 500px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.product-search-input:focus {
+  /* ... (keep existing styles) ... */
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Optional: Placeholder text styling */
+.product-search-input::placeholder {
+  color: #999;
+}
+
+/* ... (rest of your existing CSS) ... */
+/* --- New styles for the Sticky Header Container --- */
+.sticky-header-container {
+  /* This container will become sticky */
+  position: sticky;
+  top: 0; /* Sticks to the very top */
+  z-index: 90; /* Make sure it's above other content, but maybe below navbar if needed */
+  background-color: #f8f8f8; /* Background for the sticky area */
+  padding-top: 15px; /* Add some padding if needed at the top of the whole section */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for visual separation */
+  /* Ensure it takes full width within its parent */
+  width: 100%;
+}
+
+
+/* --- Styles for the Category Title (inside sticky header) --- */
+.category-title {
+  text-align: center;
+  margin: 0 0 10px 0; /* Adjust margin as it's now inside the sticky container */
+  padding: 0 15px; /* Add horizontal padding if needed */
+  color: #333;
+  font-size: 1.5rem;
+}
+
+/* --- Styles for the Search Bar (inside sticky header) --- */
+.search-bar-container {
+  /* Removed sticky properties as the parent is now sticky */
+  padding: 10px 15px;
+  background-color: #f8f8f8; /* Keep background or inherit from parent */
+  border-bottom: 1px solid #eee;
+  margin-bottom: 15px; /* Space between search bar and products below it */
+  display: flex;
+  justify-content: center;
+  /* z-index is no longer needed here as the parent is sticky */
+  /* box-shadow is no longer needed here as the parent has it */
+}
+
+.product-search-input {
+  width: 90%;
+  max-width: 500px;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.product-search-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* ... (rest of your CSS, ensure other styles are as they were) ... */
+
+
+
+
+.pageWrapper {
+  height: 100vh;
+  overflow-y: auto;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
+}
+
+/* Optional: ensure body doesn't conflict */
+html, body {
+  margin: 0;
+  padding: 0;
+  overscroll-behavior-y: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: manipulation;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+
+
+
+
+
+
+
+.zoom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.zoomed-image {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+  animation: zoomIn 0.3s ease;
+}
+
+.close-zoom-button {
+  position: absolute;
+  top: 30px;
+  right: 0px;
+  font-size: 3rem;
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,41 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overscroll-behavior: none;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top); /* Optional: Keeps safe-area inset if needed */
+  background-color: transparent ;
+}
+
+.app-container {
+  position: relative;
+  /* min-height: 100vh; */
+  overflow-x: hidden;
+}
+
+
+
+
+
+html, body {
+  overscroll-behavior: none; /* Prevent rubber-band scrolling globally */
+}
+
+.shop-list-container__sl {
+  overscroll-behavior: contain; /* Stops pull-to-refresh when scrolling down */
+  max-height: calc(100vh - 20px); 
+  overflow-y: auto;
+  padding-bottom: 80px;
+  scroll-behavior: smooth;
+}
+body,
+html {
+  overscroll-behavior: none; /* Prevent rubber-band scrolling */
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  overscroll-behavior: none;
+}

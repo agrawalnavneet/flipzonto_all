@@ -1,0 +1,364 @@
+/* Cart.module.css */
+
+.cartPage {
+  background-color: #ffffff;
+  color: #007bff;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.cartTitle {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.salesmanName {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.shopDetails, .cartContainer2 {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.shopDetails h3 {
+  color: #0056b3;
+}
+
+.shopDetails p {
+  margin: 5px 0;
+}
+
+.cartItem2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.cartItemImg {
+  width: 70px;
+  height: 70px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.cartDetails2 h3 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.removeButton, .orderButton  {
+  background-color: #20196b;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.removeButton{
+  background-color: red;
+}
+
+.removeButton:hover, .orderButton:hover, .submitButton:hover, .cancelButton:hover {
+  background-color: #0056b3;
+}
+.submitButton{
+  background-color: #20196b;
+}
+
+/* Modal Styling */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 0px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 500px;
+  height: 80vh; /* Scrollable form */
+  overflow-y: auto;
+}
+
+.formRow {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.loadingSpinner {
+  margin-left: 10px;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ccc;
+  border-top: 2px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cartItem2 {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .cartItemImg {
+    width: 50px;
+    height: 50px;
+  }
+
+  .modalContent {
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+  }
+
+  .shopDetails, .cartContainer2 {
+    padding: 15px;
+  }
+}
+
+/* Highlighted sections with light background */
+.shopDetails, .cartContainer2, .subtotalContainer, .modalButtons {
+  background-color: rgba(255, 255, 255, 0.9); /* Light white effect */
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Distinct background for buttons */
+.submitButton, .cancelButton {
+  background-color: #90b7e2; /* Primary blue */
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+.submitButton:hover, .cancelButton:hover {
+  background-color: #0056b3; /* Darker blue for hover */
+}
+
+/* Fix button alignment */
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Responsive Fix */
+@media (max-width: 768px) {
+  .shopDetails, .cartContainer2, .subtotalContainer {
+    padding: 12px;
+  }
+}
+/* Overall Page Styling */
+.cartPage {
+  background-color: #ffffff;
+  color: #20196b;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* Shop Details Section */
+.shopDetails {
+  background-color: #f0f8ff; /* Light Blue */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.shopDetails h3 {
+  color: #0056b3;
+}
+
+/* Cart Items Section */
+.cartContainer2 {
+  background-color: #fafafa; /* Very Light Gray */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+/* Individual Cart Items */
+.cartItem2 {
+  background-color: #ffffff; /* White Background */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+/* Subtotal Section */
+.subtotalContainer {
+  background-color: #e6f7ff; /* Soft Light Blue */
+  padding: 15px;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* Buttons */
+.submitButton, .cancelButton {
+  background-color: #14084c;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+.cancelButton{
+  background-color: rgb(223, 10, 10);
+}
+
+.submitButton:hover, .cancelButton:hover {
+  background-color: #0056b3;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .shopDetails, .cartContainer2, .subtotalContainer {
+    padding: 15px;
+  }
+}
+
+
+
+
+
+.subtotal{
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  color:  rgb(255, 255, 255);
+  background-color: rgb(19, 11, 76);
+}
+
+.modalContent h4{
+  align-items: center;
+  text-align: center;
+  padding: 10px;
+  color:  rgb(255, 255, 255);
+  background-color: rgb(19, 11, 76);
+}
+
+
+
+.modalButtons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.submitButton {
+  background: linear-gradient(to bottom, #28a745, #218838);
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 128, 0, 0.4);
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submitButton:hover {
+  background: linear-gradient(to bottom, #218838, #1e7e34);
+  box-shadow: 0 6px 12px rgba(0, 128, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+.cancelButton {
+  background: linear-gradient(to bottom, #ff4d4d, #cc0000);
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(204, 0, 0, 0.4);
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cancelButton:hover {
+  background: linear-gradient(to bottom, #cc0000, #990000);
+  box-shadow: 0 6px 12px rgba(204, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+
+
+
+
+
+
+
+
+
+.successGifOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.95); /* Light backdrop */
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.successGif {
+  width: auto;
+  height: auto;
+ 
+}

@@ -1,0 +1,44 @@
+/* Global Styles for html and body */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overscroll-behavior: none; /* Prevents bounce/stretch (rubber band effect) */
+  scroll-behavior: smooth; /* Smooth scrolling */
+  -webkit-overflow-scrolling: auto; /* Disable rubber-banding on iOS */
+  box-sizing: border-box; /* Ensures all elements respect padding and margin */
+  background-color: transparent !important; /* Override background color */
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  background-color: inherit;
+}
+
+/* Scroll container for app's inner content */
+.app-scroll-container {
+  position: absolute;  /* Position it inside the screen */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;  /* Enables scrolling inside the container */
+  -webkit-overflow-scrolling: touch;  /* Smooth scroll on iOS */
+  padding: 1rem;
+}
+
+/* For specific scrollable container inside shop-list */
+.shop-list-container__sl {
+  overscroll-behavior: contain; /* Stops pull-to-refresh when scrolling down */
+  max-height: calc(100vh - 20px); 
+  overflow-y: auto;
+  padding-bottom: 80px;
+}
+
+/* Fixing Safe Area on Mobile */
+html, body {
+  padding-top: env(safe-area-inset-top); /* Adds padding only if overlay is active */
+}
+
