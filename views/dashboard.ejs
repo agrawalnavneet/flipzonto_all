@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .dashboard-container {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      width: 300px;
+    }
+
+    h2 {
+      font-size: 24px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 18px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .region-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .region-button {
+      padding: 12px;
+      font-size: 18px;
+      color: white;
+      background-color:#007BFF;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .region-button:hover {
+      background-color: #45a049;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background-color: #f44336;
+      color: white;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    button:hover {
+      background-color: #e53935;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="dashboard-container">
+    <h2>Welcome <%= user %>!</h2>
+    <p>Select a region:</p>
+    <div class="region-buttons">
+     
+      
+      <a href="/north-mon/shops" class="region-button">North-Mon</a>
+      <a href="/north-tue/shops" class="region-button">North-Tue</a>
+
+      <a href="/east-wed/shops" class="region-button">East-Wed</a>
+      <a href="/east-thu/shops" class="region-button">East-Thu</a>
+
+
+      <a href="/south-fri/shops" class="region-button">South-Fri</a>
+      <a href="/west-sat/shops" class="region-button">West-Sat</a>
+    </div>
+    <form action="/logout" method="GET">
+      <button type="submit">Logout</button>
+    </form>
+  </div>
+
+</body>
+</html>

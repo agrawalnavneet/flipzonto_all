@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Edit Shop</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    a {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #007BFF;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Edit Shop - <%= region.toUpperCase() %></h2>
+    <form method="POST" action="/<%= region %>/shops/edit/<%= shop._id %>">
+      <input type="text" name="shopName" value="<%= shop.shopName %>" required>
+      <input type="text" name="shopOwnerName" value="<%= shop.shopOwnerName %>" required>
+      <input type="text" name="contact" value="<%= shop.contact %>" required>
+
+       <input type="text" name="village" value="<%= shop.village %>" required>
+       
+      <input type="text" name="address" value="<%= shop.address %>" required>
+      <input type="text" name="location" value="<%= shop.location %>" required>
+      <input type="text" name="imageUrl" value="<%= shop.imageUrl %>">
+      <button type="submit">Update Shop</button>
+    </form>
+    <a href="/<%= region %>/shops">← Back to Shops</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,406 @@
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Place Order - <%= shopDetails.shopName %></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffffff;
+    }
+
+    h1 {
+      font-size: 1.3rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .shop-info p {
+      margin: 0;
+      font-size: 0.85rem;
+    }
+
+    .categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .category {
+      background: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 0.4rem 0.8rem;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    #products {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    /* Loading Spinner */
+    .loader {
+      border: 4px solid #f3f3f3; /* Light grey background */
+      border-top: 4px solid #003087; /* Blue color */
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 2s linear infinite;
+      margin: 20px auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .product-card {
+      display: flex;
+      background: #f0fff0;
+      border-radius: 12px;
+      padding: 0.8rem;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.08);
+      align-items: center;
+    }
+
+    .product-card img {
+      width: 90px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 8px;
+      margin-right: 1rem;
+      background: white;
+      padding: 5px;
+    }
+
+    .product-details {
+      flex-grow: 1;
+    }
+
+    .product-details h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .product-details span,
+    .product-details p {
+      margin: 2px 0;
+      font-size: 0.9rem;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+
+    .actions input[type="number"] {
+      width: 50px;
+      padding: 0.3rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .actions button {
+      background: #003087;
+      color: white;
+      border: none;
+      padding: 0.4rem 0.7rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .actions button:hover {
+      background: #001f5c;
+    }
+
+    /* Out of stock button */
+    .out-of-stock {
+      background: red;
+      color: white;
+      cursor: not-allowed;
+    }
+
+    .category-container {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(2, auto);
+  overflow-x: auto;
+  /* gap: 20px; */
+  /* padding: 20px; */
+  padding-top: 5px;
+  padding-bottom: 5px;
+  scroll-behavior: smooth;
+  /* width: 100%; */
+}
+
+.category-item {
+  width: 80px;
+  flex-shrink: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.category-item img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  /* margin-bottom: 5px; */
+}
+
+.category-item span {
+  /* padding-top: -20px; */
+  margin-top: -20px;
+  text-align: center;
+  display: block;
+  /* font-size: 13px; */
+  color: #333;
+  /* font-weight: 500; */
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.order-heading {
+  text-align: center;
+  font-size: 28px;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.shop-info-card {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: #f0fff0;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.shop-info-card p {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #333;
+  line-height: 1.6;
+}
+
+.shop-info-card strong {
+  color: #1a73e8;
+}
+
+
+  </style>
+</head>
+<body>
+  <%- include('partials/navbar') %>
+  <h1 class="order-heading">Place Order for <%= shopDetails.shopName %></h1>
+
+<div class="shop-info-card">
+  <p><strong>Shop Name:</strong> <%= shopDetails.shopName %></p>
+  <p><strong>Contact:</strong> <%= shopDetails.contact %></p>
+  <p><strong>Owner:</strong> <%= shopDetails.shopOwnerName %></p>
+  <p><strong>Location:</strong> 
+    <a 
+  href="<%= shopDetails.location %>" 
+  target="_blank" 
+  class="location-link">
+  
+  view on the location
+</a>
+
+  </p>
+  
+  <p><strong>Address:</strong> <%= shopDetails.address %></p>
+</div>
+
+
+  <div class="category-container">
+    <% 
+      const categories = [
+        { name: 'chocolate', image: 'https://media-hosting.imagekit.io/953acbec70f941de/choclate1.png?Expires=1839517777&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=gzUTu0q4Z2pHsMjKJeFLSKUIJ01ze-20l6rtGkqZ89vK45taiK7G8SnhuLcFzBr7Q9MinXodVJhUa4xgB7w-EDCz3SsVKzjis7xWXR~5c9JDXzEHErY2TN2d8hJpSYOiEE6TLpGHMSoWtn2-ViW9uso-4-yBhq1Zwi6fY4YakyRYnpx5nndslwocM4Gid4faGorvC4-YiHfnamcWrLdpBduKVV4ef-Kgf0IOnG9Ej5uHfjnETzw9vHQWRIiexHY~pdyquP-Axt5WVb5GUX3HeVbfzytMkqtte3lnm0nmSlDllVSEmqqKwY1Ulpe6sjulz~3m69k5URUnvD5sMynh7A__' },
+        { name: 'biscuit', image: 'https://media-hosting.imagekit.io/f5b1f10a4a9c44d6/buscuit1%20-%20Copy.png?Expires=1839518951&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=mlSNQoieQI~Ze-fcmt-uetLm2ML4ka9Hwn5pxl00uaMtEnGp2TfTBbYygdYln1PzyJl1PLKj2VqLcEz-pmd3X~eR4Jg8rujdbXSl2uuh3mrK5UjraL~OK7KZV6pvQE0ldj~4ZMCOKt6RfVz-MmZt-DjLRbLfNKNo09lB35bEuPd3e4l5JLJd7V7WCuXiFeEg8SqH9qO96xa7lQOBETjt1mAyQsrGSQ9z8isqfCb3vU6Bn7ZyYCALFuUBDs30HXZ2AsjjsRxRrda0GF0yRPbSM8LlD4Cz6lg8IYpvKVGQFgxfn4vHMIiOCtUozOHBPXrrVEHGZu9u0wXEYP-jsfFt-w__' },
+        { name: 'snacks', image: 'https://media-hosting.imagekit.io/67f9d1506daf48a9/snaks%20-%20Copy.png?Expires=1839518578&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=yH7cTTvqbW34p6ZDSQvZGKB8GVCfSVed5HLGmelQQI9aFPtTnZD8QMHQm0une1kIesH4X4QcvQDdORoz-mHirDcbVq9TrdXSg2az5zXTmrIcEmjXqxMn6TXkFPEvPvN6~V-y7EvqEFQRxNm2lpNIEcdWthz0w4V9woNeATp3QwCz1OBTP~IA0xXg9QmlhZ49BW4-u~Q6cInwhF1jBFl0Zllwbwhtuq~0mmBDjouOOKyR2F2Uu1o41Bys7MVcpOJBLWh6iTHpgF8PIu2o1UFPXUGgCWf92hUp7xs9hQs6RDE7prgq0gnfva8VBAgx~T5nXUbNXI~mWK~rXeZOH5cIbQ__' },
+        { name: 'colddrink', image: 'https://media-hosting.imagekit.io/7aba5388a1d7412e/colddrink%20-%20Copy.png?Expires=1839519253&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=Pl7MgSbGW8dWzbgouIOJpvg2v9naFrM1CXFWp17dNibZS~a6ZacUl4fTUihW6HlyYjdvUHOfBTxg5gIoZEhvgL2vHcuuP9PcKLeiE-bpEiHr37KH7Abbem0ccGYkg5TvIRbz-5lemP-P71zzUQn3XTGNNeLRt6sD5BHYuTW0IFikRq~aemS2FeSG07Zu4Y3b3UTdvaDiS7IOz~sJAWjtIdZdog3b-50laSkMJh-VB2n6HdrQtTRtfNAdGD4bwo5EyItW2VM95r6Bjz2wsG~CIBqSmfHo7yON4H-x76hW-0dyuD~emWAd46zVHWSA25EyrIp4G83YZlPaDVcBlPz81g__' },
+       
+        { name: 'oil', image: 'https://media-hosting.imagekit.io/e0e34ca217594c8b/cookingoil1.png?Expires=1839522289&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=kZRu3Y2JtVsRnVZ4vLaCuE2o4Z9xDgtVakCxLN1wofQ6HMtwutWPtO6Zor7vH-OQLBao9RJWAgWOF8fS31ImZgkWUB-hbo6rmBByeyMEeEWhFfhPQK0FZqvFGNVZV1kBy9L4aaqU3rP09n7FF9nfWyHtzhJUiFF5lGPDnPAM60IsXWvFpRm69drVTwx1B9IpaWjyba8NGh3vYgTBEPxTSfdA8Mg9Sg16ZQteo2~3ctgUITCtSE7zbtG7JUMe6ET6s88rd081~OfSxwCHYAsYoy9xnKdDaEJnSGKxebcxpgW1VJyk-~w0OvS~ixxEY3Z1QARneVd2WAY39wLxJX-dsw__' },
+        { name: 'masala', image: 'https://media-hosting.imagekit.io/2c3defc5a2344edf/Untitled%20design%20(44).png?Expires=1839522732&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=g3tPfHbkA3o5XrlGFJrwxBgVOLmi9gegBSthmi5G1kahJ5kBdw0pVlXFh8iGWMXChZka5xNMFr~1WeK8j9ZYm0-AdCGw2CME01WW9StuNrKvG9jmU1CyhwB64DabIGfr2UJSDfVR1cWoZxyMVVen7aJuSIYDlUcni57yQpKaPa4nbISZd975eRe1CF6ZAaFHNAZzvOVK9uWxlZsWLEBmo8w8Qs08U3Pq2z3rZ2rDILg5osPQnl895HNP5Qgyo0T1EPL02OM~07XGbPEQyhPCPfOa3yVzJsepQAgtzur~Fi80EBc3qh-4X-HJHwTCN3-Zo10Xjsx-5OJhv89UJ1Ld0Q__' },
+        
+        { name: 'tea', image: 'https://media-hosting.imagekit.io/3ab080e0cee140f1/tea1.png?Expires=1839518003&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=q6MZNBVV4SAPbr7O7L-SKmjNZ0V2prDX3~IHdKJuQFpZJQ~9bh9hGDQsjPB85tOgHL4XaYnnEo0UT~b5Ki7qezcVhTZq55LlPu~dasRMx7XuC6Ll6GIszCIAkraf9-i4WW0U5TxeTxpVdlZxgVaUAjrjsSyq2k37BxsB1IzVIGKPyWPd~0rECsCH6pwxce8Kv~g6Wc1yJpLaAcQVv5URGxh30NRHg-LLJqgUnpaA4xTGZuS-FLzFyMnzftcL3NvoZueCG46rTyOR2~W9Vf0IYxTTx5jTmjrXnzf8DP5~vD0ZsyyMwtgFMHGO79qRs9bv9p6ZmuNBuIGod-YDQfBlvQ__' },
+        { name: 'coffee', image: 'https://media-hosting.imagekit.io/b863ca6670594dcd/tea_coffe-2.png?Expires=1839523165&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=0B~GnQ79NBfeh0bpW21jL7Bgps~TW0o32GN8I0-26EwTKxcIctWl-KJ5nqibwVsGNe-GHW6YYYbvLa5CmkSamjOgfomZhR5UY~olbrd-qXA3qkCMm0WOlQ~NKH91QBs85oA5meCwcYPxafnkJzRuc9VORrNG6QKGC1k1TPOJcPY0UCFwJ-etcuIPi0XtCne978eZimnyrWJT3hEZV7qC2LHmtSrM0UDaqfnz~Iy7ZDaU51F6A3lOzzMgsIrx4YVV06KkNqjmsS0R0HBTfaE9AhjCihoWZ04-iKsp6ruI83LksR6OD4IKMf449VIFaHx1CRLprqFJm75u0DOxdDRjqg__' },
+   
+        { name: 'soap', image: 'https://media-hosting.imagekit.io/32fd397b27c34b80/bathingsoap1.png?Expires=1839518206&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=r-DIAUAGfSOaNCv65oUyWhZt41m5rLl8qhUhBnQ7R6F3iGHjflKq-u9Jn8dnu44fK8rOtHYhygoGVQVOrz9CvPzZXoO4PrFA5d75Ee1GQw5Rj7Tps18E2t9blFYgwYjbESWryCvwRhSya4acxocYfXu3hiP4L~RctnmB2txLo61ddKz5UekdeoG68eNzLOekEnQEO8hwB6I3H-S3qhbiw0VmFHkdoHxOgo7byJufalFLMBOV3gMg6ig7FeESGOnul-dfoBfU4IHE5Lpc2XNsnByMovf7WftnWdnV5SuC13r1mc8IIdGMEtEm2EXFZoS~lnrdv6Bug3Txva-RVouB2w__' },
+       
+        { name: 'toothpaste', image: 'https://media-hosting.imagekit.io/299f48840d474a04/tothpaste1%20-%20Copy.png?Expires=1839518388&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=SoLWelWfh3LBCXsJHVTeRcMyRuxq8v-~CoAHClQs-X~iMd41ebx7ODmk11Qv0dEgC7rH371nm8iRcRF4pfyfLnu7v9p4KpLViNU8yFQOq6ZGBGUNFCqw98mOImGDXAceAjUJqDqxNUmGz6A~DCNhCCi68MMg1mgZ5x9YKx7iceoQMi0v4jboWs4hhcI5ou6LI5LvzgRdeJPlKpQWuLC1-pxmKaF5~pHxF9lxVwIt44L~GWP4pGzyJmtwb~h-QndvLBcsXSsU0yrUVAae5gZgGPeMtuDjZl4bst-bphIEVaSUzhdlZnGQHYhsuyWMt5rsfgKD-hIk9UyP~Swp6ipDYQ__ '},
+        { name: 'chocolate', image: 'https://media-hosting.imagekit.io/953acbec70f941de/choclate1.png?Expires=1839517777&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=gzUTu0q4Z2pHsMjKJeFLSKUIJ01ze-20l6rtGkqZ89vK45taiK7G8SnhuLcFzBr7Q9MinXodVJhUa4xgB7w-EDCz3SsVKzjis7xWXR~5c9JDXzEHErY2TN2d8hJpSYOiEE6TLpGHMSoWtn2-ViW9uso-4-yBhq1Zwi6fY4YakyRYnpx5nndslwocM4Gid4faGorvC4-YiHfnamcWrLdpBduKVV4ef-Kgf0IOnG9Ej5uHfjnETzw9vHQWRIiexHY~pdyquP-Axt5WVb5GUX3HeVbfzytMkqtte3lnm0nmSlDllVSEmqqKwY1Ulpe6sjulz~3m69k5URUnvD5sMynh7A__' },
+        { name: 'biscuit', image: 'https://media-hosting.imagekit.io/f5b1f10a4a9c44d6/buscuit1%20-%20Copy.png?Expires=1839518951&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=mlSNQoieQI~Ze-fcmt-uetLm2ML4ka9Hwn5pxl00uaMtEnGp2TfTBbYygdYln1PzyJl1PLKj2VqLcEz-pmd3X~eR4Jg8rujdbXSl2uuh3mrK5UjraL~OK7KZV6pvQE0ldj~4ZMCOKt6RfVz-MmZt-DjLRbLfNKNo09lB35bEuPd3e4l5JLJd7V7WCuXiFeEg8SqH9qO96xa7lQOBETjt1mAyQsrGSQ9z8isqfCb3vU6Bn7ZyYCALFuUBDs30HXZ2AsjjsRxRrda0GF0yRPbSM8LlD4Cz6lg8IYpvKVGQFgxfn4vHMIiOCtUozOHBPXrrVEHGZu9u0wXEYP-jsfFt-w__' },
+      ];
+  
+      categories.forEach(category => { 
+    %>
+      <div class="category-item" onclick="loadCategory('<%= category.name %>')">
+        <img src="<%= category.image %>" alt="<%= category.name %>" />
+        <span><%= category.name.charAt(0).toUpperCase() + category.name.slice(1) %></span>
+      </div>
+    <% }); %>
+  </div>
+  
+
+  <!-- Loader will appear here while fetching products -->
+  <div id="loader" class="loader" style="display: none;"></div>
+
+  <div id="products"></div>
+
+  <script>
+    async function loadCategory(category) {
+      try {
+        localStorage.setItem("selectedCategory", category); // Store selected category
+        const container = document.getElementById('products');
+        const loader = document.getElementById('loader');
+        
+        // Show loader while fetching products
+        loader.style.display = 'block';
+        container.innerHTML = ''; // Clear previous products if any
+  
+        const apiUrl = `http://localhost:3001/${category}/api`; // API call for products
+        const res = await fetch(apiUrl);
+        if (!res.ok) throw new Error('Failed to fetch products.');
+  
+        const items = await res.json();
+        container.innerHTML = `<h2 style="color:#003087;">${category.charAt(0).toUpperCase() + category.slice(1)} Products</h2>`;
+        
+        items.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          card.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="product-details">
+              <h3>${item.name}</h3>
+              <span style="color: red;">MRP ₹${item.MRP}</span><br>
+              <span style="color: green;"><strong>Rate:</strong> ₹${item.rate}</span><br>
+              <p>Total Weight: ${item.total_weight}</p>
+              ${item.available_jar > 0
+                ? `<p><strong>Available:</strong> <span style="color: green;">${item.available_jar}</span></p>`
+                : `<p style="color: red;">Out of Stock</p>`}
+              <div class="actions">
+                <input type="number" id="qty-${item._id}" min="1" max="${item.available_jar}" value="1" ${item.available_jar === 0 ? 'disabled' : ''}>
+                <button id="add-to-cart-${item._id}" onclick="addToCart('${item._id}', '${item.name}', '${item.image}', ${item.MRP}, ${item.rate}, '${category}', ${item.available_jar})" 
+                  ${item.available_jar === 0 ? 'class="out-of-stock" disabled' : ''}>
+                  ${item.available_jar === 0 ? 'Out of Stock' : 'Add to Cart'}
+                </button>
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+  
+        // Hide the loader once the products are loaded
+        loader.style.display = 'none';
+  
+      } catch (error) {
+        console.error(error.message);
+        alert('Failed to load products.');
+        loader.style.display = 'none'; // Hide loader on error
+      }
+    }
+  
+    // Load last selected category after refresh
+    document.addEventListener("DOMContentLoaded", () => {
+      const lastCategory = localStorage.getItem("selectedCategory");
+      if (lastCategory) {
+        loadCategory(lastCategory);
+      }
+    });
+  
+    // Cart logic
+    async function addToCart(id, name, image, MRP, rate, category, available_jar) {
+      const quantity = parseInt(document.getElementById(`qty-${id}`).value);
+  
+      // If the item is out of stock, show an alert and stop
+      if (available_jar === 0) {
+        alert('This item is out of stock.');
+        return;
+      }
+  
+      // Validate if requested quantity exceeds stock
+      if (quantity > available_jar) {
+        alert('Requested quantity exceeds stock.');
+        return;
+      }
+  
+      try {
+        // 🔥 NEW: Update stock on server before adding to cart
+        const response = await fetch(`http://localhost:3001/api/order/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ qty: quantity })
+        });
+  
+        // Check if the response is successful (status code 200)
+        if (!response.ok) {
+          // Log the error response text
+          const errorText = await response.text();
+          console.error('Error response:', errorText);
+          throw new Error('Failed to update stock: ' + errorText);
+        }
+  
+        // Parse the JSON response
+        const responseData = await response.json();
+        console.log('API response data:', responseData);
+  
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItemIndex = cart.findIndex(item => item.id === id);
+  
+        if (existingItemIndex !== -1) {
+          cart[existingItemIndex].quantity = parseInt(cart[existingItemIndex].quantity) + quantity;
+        } else {
+          const product = { id, name, image, MRP, rate, quantity };
+          cart.push(product);
+        }
+  
+        // Update cart in localStorage
+        localStorage.setItem('cart', JSON.stringify(cart));
+  
+        // Log success and notify the user
+        console.log(`${name} added to cart!`);
+        alert(`${name} added to cart!`);
+  
+        // Optionally: Update the product stock quantity visually
+        const productCard = document.getElementById(`add-to-cart-${id}`).closest('.product-card');
+        const availableQtyElement = productCard.querySelector('.product-details p span');
+        const updatedAvailableQty = available_jar - quantity;
+  
+        // Update available stock display in the UI
+        availableQtyElement.textContent = updatedAvailableQty;
+        availableQtyElement.style.color = updatedAvailableQty === 0 ? 'red' : 'green';
+  
+        // Disable button if stock runs out
+        if (updatedAvailableQty === 0) {
+          const addToCartButton = productCard.querySelector('button');
+          addToCartButton.disabled = true;
+          addToCartButton.textContent = 'Out of Stock';
+        }
+  
+        // **Page refresh after adding to cart**
+        setTimeout(() => {
+          location.reload(); // Refresh the page after adding to cart
+        }, 300); // Short delay before refresh for smoother user experience
+  
+      } catch (err) {
+        // Log the error for debugging
+        console.error('Error updating stock:', err);
+        alert('Error updating stock: ' + err.message);
+      }
+    }
+  </script>
+  
+
+</body>
+</html>

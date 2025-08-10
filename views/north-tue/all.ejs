@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>All Shops - North</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .sticky-search {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 1);
+      padding: 15px 20px 10px;
+      width: 100%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .sticky-search input {
+      padding: 10px;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      color: #333;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .nav-button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .nav-button:hover {
+      background-color: #0056b3;
+    }
+
+    .card {
+      display: flex;
+      background-color: white;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .card img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-right: 1px solid #ddd;
+    }
+
+    .card-content {
+      flex: 1;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .card-content strong {
+      font-size: 18px;
+    }
+
+    .details {
+      margin-bottom: 10px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .buttons a,
+    .buttons button {
+      padding: 8px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .buttons a {
+      background-color: #007BFF;
+      color: white;
+    }
+
+    .buttons a:hover {
+      background-color: #0056b3;
+    }
+
+    .buttons button {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    .buttons button:hover {
+      background-color: #a71d2a;
+    }
+
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sticky-search">
+    <input type="text" id="searchInput" placeholder="Search shops...">
+  </div>
+
+  <div class="container">
+    <h2>All Shops - North-Tue</h2>
+
+    <form action="/north-tue/shops/create" method="GET" style="margin-bottom: 20px;">
+      <button type="submit" class="nav-button">Add Shop</button>
+    </form>
+
+    <div id="shopList">
+      <% shops.forEach(shop => { %>
+        <div class="card shop-card">
+          <img src="<%= shop.imageUrl || 'https://via.placeholder.com/150' %>" alt="<%= shop.shopName %>">
+          <div class="card-content">
+            <div class="details">
+              <strong class="shop-name"><%= shop.shopName %></strong><br>
+              <span class="shop-owner">Owner: <%= shop.shopOwnerName %></span><br>
+              <span class="shop-contact">Contact: <%= shop.contact %></span><br>
+             <span class="shop-address">Village : <%= shop.village %></span><br>
+
+              <span class="shop-address">Address: <%= shop.address %></span><br>
+              <span class="shop-location">
+                Location: <a href="<%= shop.location %>" target="_blank">View</a>
+            </span><br>
+            </div>
+            <div class="buttons">
+              <form method="POST" action="/north-tue/shops/delete/<%= shop._id %>" style="display:inline;">
+                <!-- <button type="submit">Delete</button> -->
+              </form>
+              <a href="/north-tue/shops/edit/<%= shop._id %>">Edit</a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('searchInput');
+    const shopCards = document.querySelectorAll('.shop-card');
+
+    searchInput.addEventListener('input', function () {
+      const keyword = this.value.toLowerCase();
+
+      shopCards.forEach(card => {
+        const nameElem = card.querySelector('.shop-name');
+        const ownerElem = card.querySelector('.shop-owner');
+        const contactElem = card.querySelector('.shop-contact');
+        const addressElem = card.querySelector('.shop-address');
+        const locationElem = card.querySelector('.shop-location');
+
+        if (!nameElem.dataset.original) {
+          nameElem.dataset.original = nameElem.textContent;
+          ownerElem.dataset.original = ownerElem.textContent;
+          contactElem.dataset.original = contactElem.textContent;
+          addressElem.dataset.original = addressElem.textContent;
+          locationElem.dataset.original = locationElem.textContent;
+        }
+
+        nameElem.innerHTML = nameElem.dataset.original;
+        ownerElem.innerHTML = ownerElem.dataset.original;
+        contactElem.innerHTML = contactElem.dataset.original;
+        addressElem.innerHTML = addressElem.dataset.original;
+        locationElem.innerHTML = locationElem.dataset.original;
+
+        const isMatch = (
+          nameElem.textContent.toLowerCase().includes(keyword) ||
+          ownerElem.textContent.toLowerCase().includes(keyword) ||
+          contactElem.textContent.toLowerCase().includes(keyword) ||
+          addressElem.textContent.toLowerCase().includes(keyword) ||
+          locationElem.textContent.toLowerCase().includes(keyword)
+        );
+
+        if (keyword && isMatch) {
+          card.style.display = 'flex';
+
+          if (nameElem.textContent.toLowerCase().includes(keyword)) nameElem.innerHTML = highlightText(nameElem.dataset.original, keyword);
+          if (ownerElem.textContent.toLowerCase().includes(keyword)) ownerElem.innerHTML = highlightText(ownerElem.dataset.original, keyword);
+          if (contactElem.textContent.toLowerCase().includes(keyword)) contactElem.innerHTML = highlightText(contactElem.dataset.original, keyword);
+          if (addressElem.textContent.toLowerCase().includes(keyword)) addressElem.innerHTML = highlightText(addressElem.dataset.original, keyword);
+          if (locationElem.textContent.toLowerCase().includes(keyword)) locationElem.innerHTML = highlightText(locationElem.dataset.original, keyword);
+        } else if (!keyword) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+
+    function highlightText(text, keyword) {
+      const regex = new RegExp(`(${keyword})`, 'gi');
+      return text.replace(regex, `<span class="highlight">$1</span>`);
+    }
+  </script>
+</body>
+</html>

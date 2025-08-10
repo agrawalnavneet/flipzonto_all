@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cart</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f5f8f4; padding: 2rem; }
+    h1 { text-align: center; color: #003087; margin-bottom: 1.5rem; }
+    .cart-container { max-width: 800px; margin: auto; }
+    .cart-item { display: flex; background: white; padding: 1rem; border-radius: 12px; margin-bottom: 1rem; box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); align-items: center; }
+    .cart-item img { width: 80px; border-radius: 8px; margin-right: 1rem; }
+    .cart-actions { display: flex; flex-direction: column; gap: 0.5rem; }
+    .remove-btn, .order-btn { background: #003087; color: white; padding: 1rem; border-radius: 8px; cursor: pointer; width: 100%; font-size: 1rem; margin-top: 1rem; }
+    .remove-btn:hover, .order-btn:hover { background: #001f5c; }
+    #order-summary { display: none; background: rgba(0, 0, 0, 0.5); position: fixed; top: 0; left: 0; width: 100%; height: 100%; justify-content: center; align-items: center; }
+    .order-popup { background: white; padding: 1.5rem; border-radius: 12px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); text-align: center; width: 400px; }
+    .close-btn { background: #e53935; color: white; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+
+
+  <!-- YAHA WALA ORDER BAND KR DIYE BACKED SALES PANEL WALA ORDER ONLY REACT-VITE SALES PANEL SE HOGI. -->
+  <!-- <h1>Your Cart</h1> -->
+  <!-- <p>Welcome, <%= user %>!</p> -->
+
+  <!-- <div id="shop-info"></div> -->
+  <div class="cart-container" id="cart-items"></div>
+  <!-- <h3>Total Price: ₹<span id="total-price">0</span></h3> -->
+  <!-- <button class="order-btn" onclick="openOrderPopup()">Order All</button> -->
+
+  <div id="order-summary">
+    <div class="order-popup">
+      <h2>Order Summary</h2>
+      <form id="order-form" action="/confirm-order" method="POST">
+        <h3>Shop Details</h3>
+        <p>Shop Name: <span id="shop-name"></span></p>
+        <p>Contact: <span id="shop-contact"></span></p>
+        <p>Location: <span id="shop-location"></span></p>
+        <p>Address: <span id="shop-address"></span></p>
+
+        <h3>User Details</h3>
+        <label>Your Name:</label>
+        <input type="text" value="<%= user %>" readonly><br><br>
+
+        <label for="user-contact">Your Contact:</label>
+        <input type="text" id="user-contact" required><br><br>
+
+        <h3>Order Items</h3>
+        <div id="order-items"></div>
+
+        <h3>Total Price: ₹<span id="order-total-price">0</span></h3>
+
+        <input type="hidden" name="userName" id="hidden-user-name">
+        <input type="hidden" name="userContact" id="hidden-user-contact">
+        <input type="hidden" name="shopName" id="hidden-shop-name">
+        <input type="hidden" name="shopContact" id="hidden-shop-contact">
+        <input type="hidden" name="orderDate" id="order-date">
+        <input type="hidden" name="totalPrice" id="hidden-total-price">
+        <input type="hidden" name="orderItems" id="hidden-order-items">
+
+        <button type="submit" class="close-btn">Confirm Order</button>
+        <button type="button" class="close-btn" onclick="closeOrderPopup()">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function loadCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const shopDetails = JSON.parse(localStorage.getItem('shopDetails')) || {};
+
+      const container = document.getElementById('cart-items');
+      const shopContainer = document.getElementById('shop-info');
+      let totalPrice = 0;
+
+      shopContainer.innerHTML = shopDetails.shopName 
+        ? `<h2>Shop: ${shopDetails.shopName}</h2>
+           <p>Contact: ${shopDetails.contact}</p>
+           <p>Owner: ${shopDetails.owner}</p>
+           <p>Location: ${shopDetails.location}</p>
+           <p>Address: ${shopDetails.address}</p>`
+        : "<p>No shop selected.</p>";
+
+      container.innerHTML = cart.length === 0 ? "<p>Your cart is empty.</p>" : "";
+
+      cart.forEach((item, index) => {
+        totalPrice += item.rate * item.quantity;
+        const div = document.createElement('div');
+        div.className = "cart-item";
+        div.innerHTML = `
+          <img src="${item.image}" alt="${item.name}">
+          <div class="cart-details">
+            <h3>${item.name}</h3>
+            <p>MRP: ₹${item.MRP}</p>
+            <p>Rate: ₹${item.rate}</p>
+            <p>Quantity: ${item.quantity}</p>
+          </div>
+          <div class="cart-actions">
+            <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+          </div>`;
+        container.appendChild(div);
+      });
+
+      document.getElementById("total-price").textContent = totalPrice;
+    }
+
+    function removeItem(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      loadCart();
+    }
+
+    function openOrderPopup() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const shopDetails = JSON.parse(localStorage.getItem('shopDetails')) || {};
+
+      if (cart.length === 0) {
+        alert("Cart is empty!");
+        return;
+      }
+
+      document.getElementById("shop-name").textContent = shopDetails.shopName;
+      document.getElementById("shop-contact").textContent = shopDetails.contact;
+      document.getElementById("shop-location").textContent = shopDetails.location;
+      document.getElementById("shop-address").textContent = shopDetails.address;
+      document.getElementById("hidden-shop-name").value = shopDetails.shopName;
+      document.getElementById("hidden-shop-contact").value = shopDetails.contact;
+
+      let orderItemsHTML = "";
+      let totalPrice = 0;
+      cart.forEach(item => {
+        orderItemsHTML += `<p>${item.name} - ₹${item.rate} x ${item.quantity} = ₹${item.rate * item.quantity}</p>`;
+        totalPrice += item.rate * item.quantity;
+      });
+
+      document.getElementById("order-items").innerHTML = orderItemsHTML;
+      document.getElementById("order-total-price").textContent = totalPrice;
+
+      document.getElementById("hidden-user-name").value = "<%= user %>";
+      document.getElementById("hidden-total-price").value = totalPrice;
+      document.getElementById("order-date").value = new Date().toISOString().split("T")[0];
+      document.getElementById("hidden-order-items").value = JSON.stringify(cart);
+
+      document.getElementById("order-summary").style.display = "flex";
+    }
+
+    function closeOrderPopup() {
+      document.getElementById("order-summary").style.display = "none";
+    }
+
+    // ✅ Intercept the form submission to make AJAX request
+    document.getElementById("order-form").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const userContact = document.getElementById("user-contact").value;
+      if (!userContact.trim()) {
+        alert("Please enter your contact number.");
+        return;
+      }
+
+      document.getElementById("hidden-user-contact").value = userContact;
+
+      const formData = new FormData(this);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch('/confirm-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          alert("✅ Order Placed Successfully!");
+          localStorage.removeItem('cart');
+          localStorage.removeItem('shopDetails');
+          setTimeout(() => window.location.reload(), 500);
+        } else {
+          alert("❌ Failed: " + result.message);
+        }
+      } catch (err) {
+        alert("❌ Server error. Please try again.");
+        console.error(err);
+      }
+    });
+
+    loadCart();
+  </script>
+</body>
+</html>

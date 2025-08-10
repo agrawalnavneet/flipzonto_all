@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Shop</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-image: url('https://www.w3schools.com/w3images/forestbridge.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.95);
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input[type="text"] {
+      padding: 12px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      width: 100%;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    a {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      color: #007BFF;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Add Shop - <%= region.toUpperCase() %></h2>
+    <form method="POST" action="/<%= region %>/shops/create">
+        <input type="text" name="shopName" placeholder="Shop Name" required>
+        <input type="text" name="shopOwnerName" placeholder="Shop Owner Name" required>
+        <input type="text" name="contact" placeholder="Contact Number" required>
+        <input type="text" name="village" id="village" placeholder="village or city" required>
+
+        <!-- Shop Address Input -->
+        <input type="text" name="address" id="address" placeholder="Shop Address" required>
+
+        <!-- Get Exact Location Button -->
+        <button type="button" id="getExactLocationButton">Auto Fill Address </button>
+
+        <!-- Shop Location Input -->
+        <input type="text" name="location" id="location" placeholder="Shop Location" required>
+        
+        <!-- Get Map Link Button -->
+        <button type="button" id="getMapLinkButton">Get Map Link</button>
+
+        <input type="text" name="imageUrl" placeholder="Image URL">
+        <button type="submit">Add Shop</button>
+    </form>
+    <a href="/<%= region %>/shops">← Back to Shops</a>
+</div>
+
+<script>
+    let latitude, longitude;
+
+    // Get Exact Location Button
+    document.getElementById('getExactLocationButton').addEventListener('click', function() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                latitude = position.coords.latitude;
+                longitude = position.coords.longitude;
+
+                // Use OpenStreetMap's Nominatim API to get the address based on lat/lon
+                fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.display_name) {
+                            const address = data.display_name;
+                            document.getElementById('address').value = address;  // Populate Shop Address
+                        } else {
+                            alert("Unable to retrieve address.");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error fetching address:", error);
+                    });
+            }, function(error) {
+                alert("Geolocation is not supported or permission denied.");
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    });
+
+    // Get Map Link Button (Google Maps Link without API key)
+    document.getElementById('getMapLinkButton').addEventListener('click', function() {
+        if (latitude && longitude) {
+            // Generate the Google Maps link without needing an API key
+            const mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+            document.getElementById('location').value = mapLink;  // Populate Shop Location with Map Link
+        } else {
+            alert("Please get the exact location first.");
+        }
+    });
+</script>
+
+</body>
+</html>

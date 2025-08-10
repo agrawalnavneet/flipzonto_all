@@ -1,0 +1,26 @@
+{
+  "name": "flipzonto-admin-salesman",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "type": "module",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
+    "connect-mongo": "^5.1.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.13.2",
+    "node-fetch": "^3.3.2"
+  }
+}

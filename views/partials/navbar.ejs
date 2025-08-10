@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <style>
+        body { margin: 0; }
+        .navbar {
+            background: #f0f0f0; /* Light grey background */
+            color: #212121; /* Dark grey text */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .navbar-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo-image {
+            height: 30px; /* Adjust logo height as needed */
+        }
+
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem; /* Spacing between "My Orders" and "My Cart" */
+        }
+
+        .navbar-right a {
+            color: #212121;
+            text-decoration: none;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            transition: opacity 0.2s ease-in-out;
+        }
+
+        .navbar-right a:hover {
+            opacity: 0.7;
+        }
+
+        .navbar-right a svg { /* Style for SVG icons */
+            fill: #212121;
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+        }
+
+        #cart-count {
+            font-weight: bold;
+            padding: 0.2rem 0.6rem;
+            background-color: #ff9f00; /* Flipkart's yellow for cart */
+            border-radius: 12px;
+            color: white;
+            font-size: 0.8rem;
+            position: relative;
+            top: -5px;
+            margin-left: 5px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+            .logo-image {
+                height: 25px;
+            }
+            .navbar-right a {
+                font-size: 0.9rem;
+            }
+            .navbar-right {
+                gap: 1rem;
+            }
+            .navbar-right a svg {
+                width: 18px;
+                height: 18px;
+            }
+            #cart-count {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <img src="https://media-hosting.imagekit.io/16ad8c2b162f4c04/flipzonto.png?Expires=1839942134&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=DchMsWo63LgkkyF18vNIq2PNAFaG2pigqxkjS6k4-CVf0zrGc9M9iAJ24ZIxIoollkJnLRWj6pPD9jwNXWp-lTKcbOWBsDSV-m5HeGllYNKTeWGoa5NB7S~1stLKRX3PX6ANXSniiOAoXPn-SVlaIxraxyi6wSZie40~acM9B8W2W157AAN6vOJgUOLQQOmZogxSSv3k-fsjP8I6d0kgGQgWjU3Tb5fwb5TV12VH75wOUPaw81c9M~9r-OpmlbleQBQwjRO5jVlIi7P1yudbYXyWlQE4Wvmdjjtq1PtSHg0QaMdpJSX1nqiRCRQzuQQbwntSSuyQtN6pzpXo9dTWfQ__" alt="Logo" class="logo-image">
+        </div>
+        <div class="navbar-right">
+            <a href="/my-orders">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 7h20v13h-20zm4-2v-3c0-1.104.896-2 2-2h8c1.104 0 2 .896 2 2v3h4v-3c0-2.209-1.791-4-4-4h-8c-2.209 0-4 1.791-4 4v3zm2 2h12v9h-12zm2 2v5h8v-5z"/></svg>
+                My Orders
+            </a>
+            <a href="/cart">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.829.672-1.5 1.5-1.5s1.5.671 1.5 1.5zm9-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.829-.672-1.5-1.5-1.5zm-7-16c-2.761 0-5 2.239-5 5s2.239 5 5 5 5-2.239 5-5-2.239-5-5-5zm0 8c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3-1.346 3-3 3zm6-3h-1v-3h-2v3h-1l-1-6h6l-1 6zm-8 0h-2v3h-2v-3h-2l1-6h4l1 6zm9 0h-1v-3h-2v3h-1l-1-6h6l-1 6z"/></svg>
+                Cart <span id="cart-count">0</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.getElementById("cart-count").textContent = cart.length;
+        }
+
+        updateCartCount();
+    </script>
+</body>
+</html>
